@@ -1,4 +1,5 @@
 class Board
+  attr_accessor :cells, :columns
   def initialize
     @cells = [
       [Cell.new("A", 6), Cell.new("B", 6), Cell.new("C", 6), Cell.new("D", 6), Cell.new("E", 6), Cell.new("F", 6), Cell.new("G", 6)],
