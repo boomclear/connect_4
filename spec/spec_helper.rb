@@ -1,0 +1,5 @@
+require './lib/board'
+require './lib/cell'
+require './lib/computer_turn'
+require './lib/game'
+require './lib/player_turn'

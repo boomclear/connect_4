@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'spec_helper'
 
 RSpec.describe PlayerTurn do
   it 'exists' do
