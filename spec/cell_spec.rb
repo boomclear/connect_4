@@ -1,4 +1,4 @@
-require './lib/cell'
+require 'spec_helper'
 
 RSpec.describe Cell do
   it 'exists' do
