@@ -1,9 +1,4 @@
 class ComputerTurn
-  attr_reader :columns
-
-  def initialize
-
-  end
 
   def computer_makes_move(board)
     location_array = board.columns.keys
