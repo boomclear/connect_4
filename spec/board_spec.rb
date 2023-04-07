@@ -1,5 +1,4 @@
-require './lib/board'
-require './lib/cell'
+require 'spec_helper'
 
 RSpec.describe Board do 
   it "exists" do 
