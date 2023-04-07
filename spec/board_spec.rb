@@ -22,7 +22,6 @@ RSpec.describe Board do
 
   it 'can print board' do
     board = Board.new 
-    require "pry"; binding.pry
     expect(board.print_board).to eq(nil)
   end
 end
