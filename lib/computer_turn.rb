@@ -11,6 +11,9 @@ class ComputerTurn
     location = location_array.sample
 
     if location == "A"
+
+      
+    end
       start from bottom...check if "*"
       if not *, move up one index position
         check for * again, if not *, move up one index position
