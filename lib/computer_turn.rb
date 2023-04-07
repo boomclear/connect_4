@@ -2,17 +2,31 @@ class ComputerTurn
   attr_reader :columns
 
   def initialize
-    @columns = {"A" => [], "B" => [], "C" => [], "D" => [], "E" => [], "F" => [], "G" => []}
+
   end
 
-  def computer_makes_move
+  def computer_makes_move(board)
     puts "Select the column to drop your coin"
-    location_array = ["A","B","C","D","E","F","G"]
+    location_array = board.columns.keys
     location = location_array.sample
 
     if location == "A"
+      start from bottom...check if "*"
+      if not *, move up one index position
+        check for * again, if not *, move up one index position
+        if move up 6, then "Choose another column"
+
+    if "B"
+      repeat
+          
+      # until board.cell.value == "*" then place piece
+      # else move up one...loop 
+      #   start with bottom index position
+
+
+      end
       bottom_to_top = -1
-      @columns["A"] << Chip.new.type[user]
+      board.columns["A"][bottom_to_top] << board.cell.value
       bottom_to_top += @columns["A"].count
       if bottom_to_top > 5 
         return puts "Choose another column!"

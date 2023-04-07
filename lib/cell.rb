@@ -8,4 +8,8 @@ class Cell
     @row = row
     @value = "*"
   end
+
+  def type
+    
+  end
 end
