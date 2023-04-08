@@ -33,12 +33,26 @@ class Game
     if win_horizontal || win_vertical || win_diagonal
 
     end
-
   end
 
   def tie?
+    if @board.cells.map do |cell|
+      cell.find do |one_cell|
+        one_cell.value == "*"
+        end
+      end
+        false
+    else
+        true
+    end
+  end
 
+  end
 
+  def win_horizontal
+    @boards.cells.map do |cell|
+      cell.map do |cell|
+    end
   end
 end
 
