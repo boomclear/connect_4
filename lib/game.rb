@@ -1,6 +1,44 @@
 class Game 
   def initialize(board)
     @board = board
+    @player = PlayerTurn.new
+    @computer = ComputerTurn.new
+  end
+
+  def main_menu
+    puts "Welcome to Connect 4"
+    puts "Press P to play and Q to quit"
+    play_or_not = $stdin.gets.chomp.upcase
+    if play_or_not == "P"
+      self.start
+    elsif play_or_not == "Q"
+      main_menu
+    else
+      puts "Please put P or Q"
+      main_menu
+    end
+  end
+
+  def start
+    loop do
+      @player.player_makes_move(@board)
+        break if win?
+        break if tie?
+      @computer.computer_makes_move(@board)
+        break if win?
+        break if tie?
+  end
+
+  def win?
+    if win_horizontal || win_vertical || win_diagonal
+
+    end
+
+  end
+
+  def tie?
+
+
   end
 end
 
