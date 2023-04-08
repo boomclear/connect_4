@@ -1,7 +1,7 @@
 class PlayerTurn
   def player_makes_move(board)
     puts "Which column would you like to drop your chip?"
-    location = "#{gets.chomp.upcase}"
+    location = $stdin.gets.chomp.upcase
     array_pos = 5
     
     if location == "A"
