@@ -1,6 +1,8 @@
 class Cell
   attr_reader :column,
-              :row
+              :row,
+              :occupied_computer,
+              :occupied_player
   attr_accessor :value
 
   def initialize(column, row)
@@ -23,4 +25,8 @@ class Cell
   end
 
   def occupied_computer?
+    if @value == "O"
+      @occupied_computer = true
+    end
+  end
 end
