@@ -14,12 +14,14 @@ RSpec.describe Board do
 
   it 'can render board' do
     board = Board.new
-    expect(board.render_board).to eq([["*", "*", "*", "*", "*", "*", "*"],
-                                      ["*", "*", "*", "*", "*", "*", "*"],
-                                      ["*", "*", "*", "*", "*", "*", "*"],
-                                      ["*", "*", "*", "*", "*", "*", "*"],
-                                      ["*", "*", "*", "*", "*", "*", "*"],
-                                      ["*", "*", "*", "*", "*", "*", "*"]])
+    expect(board.render_board[0][0]).to eq("*")
+    expect(board.render_board[0][2]).to eq("*")
+    board.cells[5][0].value = "X"
+    board.cells[4][1].value = "O"
+    board.cells[5][2].value = "X"
+    expect(board.render_board[5][0]).to eq("X")
+    expect(board.render_board[4][1]).to eq("O")
+    expect(board.render_board[5][2]).to eq("X")
   end
 
   it 'can print board' do
