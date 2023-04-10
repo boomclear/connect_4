@@ -3,6 +3,8 @@ class Game
     @board = board
     @player = PlayerTurn.new
     @computer = ComputerTurn.new
+    @player_turn = 0
+    @computer_turn = 0
   end
 
   def main_menu
@@ -21,18 +23,27 @@ class Game
 
   def start
     loop do
-      @player.player_makes_move(@board)
-        break if win?
-        break if tie?
-      @computer.computer_makes_move(@board)
-        break if win?
-        break if tie?
+      @player_turn = @player.player_makes_move(@board)
+      break if player_win?
+      break if tie?
+      @computer_turn = @computer.computer_makes_move(@board)
+      break if player_win?
+      break if tie?
+    end
   end
 
-  def win?
-    if win_horizontal || win_vertical || win_diagonal
-
+  def player_win?
+    if player_win_vertical || player_win_horizontal
+      player_win
+      true
+    else
+      false
     end
+  end
+
+  def player_win
+    puts 'You won'
+    self.main_menu
   end
 
   def tie?
@@ -47,13 +58,43 @@ class Game
     end
   end
 
-  end
 
-  def win_horizontal
-    @boards.cells.map do |cell|
-      cell.map do |cell|
+  def player_win_horizontal
+    chip_count = 1
+    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.array_pos == 5 || chip_count == 4
+      chip_count += 1
+      @player_turn.array_pos += 1
+    end
+    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.array_pos == 0 || chip_count == 4
+      chip_count += 1
+      @player_turn.array_pos -= 1
+    end
+    if chip_count >= 4
+      true
+    else
+      chip_count = 0
+      false
     end
   end
+
+  def player_win_vertical
+    chip_count = 1
+    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.location == 6 || chip_count == 4
+      chip_count += 1
+      @player_turn.location += 1
+    end
+    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.location == 0 || chip_count == 4
+      chip_count += 1
+      @player_turn.location -= 1
+    end
+    if chip_count >= 4
+      true
+    else
+      chip_count = 0
+      false
+    end
+  end
+
 end
 
 
