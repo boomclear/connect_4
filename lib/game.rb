@@ -23,17 +23,19 @@ class Game
 
   def start
     loop do
-      @player_turn = @player.player_makes_move(@board)
+      @player_turn = @player
+      @player_turn.player_makes_move(@board)
       break if player_win?
       break if tie?
-      @computer_turn = @computer.computer_makes_move(@board)
+      @computer_turn = @computer
+      @computer_turn.computer_makes_move(@board)
       break if player_win?
       break if tie?
     end
   end
 
   def player_win?
-    if player_win_vertical || player_win_horizontal
+    if player_win_vertical && player_win_horizontal
       player_win
       true
     else
@@ -61,36 +63,36 @@ class Game
 
   def player_win_horizontal
     chip_count = 1
-    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.array_pos == 5 || chip_count == 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos >= 5 && chip_count <= 4
       chip_count += 1
       @player_turn.array_pos += 1
     end
-    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.array_pos == 0 || chip_count == 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos <= 0 && chip_count <= 4
       chip_count += 1
       @player_turn.array_pos -= 1
     end
     if chip_count >= 4
       true
-    else
-      chip_count = 0
+    elsif chip_count < 4
+      chip_count = 1
       false
     end
   end
 
   def player_win_vertical
     chip_count = 1
-    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.location == 6 || chip_count == 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location >= 6 && chip_count <= 4
       chip_count += 1
       @player_turn.location += 1
     end
-    until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.location == 0 || chip_count == 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location <= 0 && chip_count <= 4
       chip_count += 1
       @player_turn.location -= 1
     end
     if chip_count >= 4
       true
-    else
-      chip_count = 0
+    elsif chip_count < 4
+      chip_count = 1
       false
     end
   end

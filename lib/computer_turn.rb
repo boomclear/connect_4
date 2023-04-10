@@ -7,6 +7,7 @@ class ComputerTurn
   def computer_makes_move(board)
     location_array = board.columns.keys
     location = location_array.sample
+    @array_pos = 5
     
     if location == "A"
       until board.cells[@array_pos][0].value == "*" || @array_pos == 0 do 

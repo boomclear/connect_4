@@ -7,23 +7,21 @@ class Cell
     @column = column
     @row = row
     @value = "*"
-    @occupied_player = false
-    @occupied_computer = false
   end
 
   def occupied_player?
-    if @value == "X"
-      true
-    else
+    if @value == "*"
       false
+    elsif @value == "X"
+      true
     end
   end
 
   def occupied_computer?
-    if @value == "O"
-      true
-    else
+    if @value == "*"
       false
+    elsif @value == "O"
+      true
     end
   end
 end
