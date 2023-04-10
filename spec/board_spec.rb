@@ -14,7 +14,12 @@ RSpec.describe Board do
 
   it 'can render board' do
     board = Board.new
-    expect(board.render_board).to be_a Array
+    expect(board.render_board).to eq([["*", "*", "*", "*", "*", "*", "*"],
+                                      ["*", "*", "*", "*", "*", "*", "*"],
+                                      ["*", "*", "*", "*", "*", "*", "*"],
+                                      ["*", "*", "*", "*", "*", "*", "*"],
+                                      ["*", "*", "*", "*", "*", "*", "*"],
+                                      ["*", "*", "*", "*", "*", "*", "*"]])
   end
 
   it 'can print board' do

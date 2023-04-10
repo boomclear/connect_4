@@ -1,6 +1,8 @@
 class Cell
   attr_reader :column,
-              :row
+              :row,
+              :occupied_player,
+              :occupied_computer
   attr_accessor :value
 
   def initialize(column, row)
