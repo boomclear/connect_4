@@ -28,6 +28,7 @@ RSpec.describe Game do
   it 'main_menu method with Q' do
     board = Board.new
     game = Game.new(board)
+    require 'pry'; binding.pry
     allow($stdin).to receive(:gets).and_return("Q\n") 
     expect(game).to receive(:main_menu)
     game.main_menu

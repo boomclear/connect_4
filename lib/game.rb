@@ -68,13 +68,14 @@ class Game
 
   def player_win_horizontal
     chip_count = 1
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos >= 5 && chip_count <= 4
+    location = @player_turn.location
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location > 5 && chip_count < 4
       chip_count += 1
-      @player_turn.array_pos += 1
+      @player_turn.location += 1
     end
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos <= 0 && chip_count <= 4
+    while @board.cells[@player_turn.array_pos][location].occupied_player? && location < 0 && chip_count < 4
       chip_count += 1
-      @player_turn.array_pos -= 1
+      location -= 1
     end
     if chip_count >= 4
       true
@@ -86,13 +87,9 @@ class Game
 
   def player_win_vertical
     chip_count = 1
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location >= 6 && chip_count <= 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos > 0 && chip_count < 4
       chip_count += 1
-      @player_turn.location += 1
-    end
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location <= 0 && chip_count <= 4
-      chip_count += 1
-      @player_turn.location -= 1
+      @player_turn.array_pos -= 1
     end
     if chip_count >= 4
       return true
