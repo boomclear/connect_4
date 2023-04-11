@@ -70,6 +70,5 @@ RSpec.describe Game do
       end
     end
     expect(game.tie?).to eq(true)
-    end
   end
 end
