@@ -33,9 +33,43 @@ RSpec.describe Game do
     game.main_menu
   end
 
-  it 'player_win? method' do
+  it 'player_win methods vertical' do
     board = Board.new
     game = Game.new(board)
-    
+    expect(game.player_win?).to eq(false)
+    game.player_win_vertical
+    expect(game.player_win?).to eq(true)
+    expect(game.player_win).to output("You won!\n").to_stdout
+  end
+
+  it 'player_win methods horizontal' do
+    board = Board.new
+    game = Game.new(board)
+    expect(game.player_win?).to eq(false)
+    game.player_win_horizontal
+    expect(game.player_win?).to eq(true)
+    expect(game.player_win).to output("You won!\n").to_stdout
+  end
+
+  it 'player_win methods diagonal' do
+    board = Board.new
+    game = Game.new(board)
+    expect(game.player_win?).to eq(false)
+    game.player_win_diagonal
+    expect(game.player_win?).to eq(true)
+    expect(game.player_win).to output("You won!\n").to_stdout
+  end
+
+  it 'tie? method' do
+    board = Board.new
+    game = Game.new(board)
+    expect(game.tie?).to eq(false)
+    board.cells.map do |row|
+      row.map do |cell|
+        cell.value = "X"
+      end
+    end
+    expect(game.tie?).to eq(true)
+    end
   end
 end
