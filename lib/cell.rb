@@ -11,17 +11,17 @@ class Cell
 
   def occupied_player?
     if @value == "*"
-      false
+      return false
     elsif @value == "X"
-      true
+      return true
     end
   end
 
   def occupied_computer?
     if @value == "*"
-      false
+      return false
     elsif @value == "O"
-      true
+      return true
     end
   end
 end

@@ -37,9 +37,9 @@ class Game
   def player_win?
     if player_win_vertical && player_win_horizontal
       player_win
-      true
+      return true
     else
-      false
+      return false
     end
   end
 
@@ -54,9 +54,9 @@ class Game
         one_cell.value == "*"
         end
       end
-        false
+        return false
     else
-        true
+        return true
     end
   end
 
@@ -90,10 +90,10 @@ class Game
       @player_turn.location -= 1
     end
     if chip_count >= 4
-      true
+      return true
     elsif chip_count < 4
       chip_count = 1
-      false
+      return false
     end
   end
 
