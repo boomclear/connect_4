@@ -1,4 +1,9 @@
-class Game 
+class Game
+  attr_reader :board,
+              :player,
+              :computer,
+              :player_turn,
+              :computer_turn
   def initialize(board)
     @board = board
     @player = PlayerTurn.new
@@ -44,7 +49,7 @@ class Game
   end
 
   def player_win
-    puts 'You won'
+    puts 'You won!'
     self.main_menu
   end
 
