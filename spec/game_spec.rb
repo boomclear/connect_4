@@ -32,6 +32,4 @@ RSpec.describe Game do
     expect(game).to receive(:main_menu)
     game.main_menu
   end
-
-  
 end

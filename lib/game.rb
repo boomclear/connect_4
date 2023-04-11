@@ -47,7 +47,7 @@ class Game
   end
 
   def player_win
-    puts 'You won'
+    puts 'You won!'
     self.main_menu
   end
 
