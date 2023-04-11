@@ -38,7 +38,7 @@ class Game
   end
 
   def player_win?
-    if player_win_vertical || player_win_horizontal
+    if player_win_vertical || player_win_horizontal || player_win_diagonal
       player_win
       true
     else

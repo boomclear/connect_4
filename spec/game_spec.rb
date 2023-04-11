@@ -32,4 +32,10 @@ RSpec.describe Game do
     expect(game).to receive(:main_menu)
     game.main_menu
   end
+
+  it 'player_win? method' do
+    board = Board.new
+    game = Game.new(board)
+    
+  end
 end
