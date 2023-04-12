@@ -78,7 +78,7 @@ class Game
         end
       end
         false
-    else
+    elsif !computer_win? && !player_win?
         true
     end
   end
