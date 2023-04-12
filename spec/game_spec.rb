@@ -55,7 +55,6 @@ RSpec.describe Game do
   it 'player_win methods diagonal' do
     board = Board.new
     game = Game.new(board)
-    require 'pry'; binding.pry
     expect(game.player_win?).to eq(false)
     game.player_win_diagonal
     expect(game.player_win?).to eq(true)

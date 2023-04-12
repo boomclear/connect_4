@@ -44,18 +44,18 @@ class Game
   def player_win?
     if player_win_vertical || player_win_horizontal
       player_win
-      return true
+      true
     else
-      return false
+      false
     end
   end
   
   def computer_win?
     if computer_win_vertical || computer_win_horizontal
       computer_win
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
@@ -77,9 +77,9 @@ class Game
         one_cell.value == "*"
         end
       end
-        return false
+        false
     else
-        return true
+        true
     end
   end
 
@@ -181,4 +181,4 @@ end
 # Main Menu (P to Play) main_menu method
 # Start the game, Player first start method game_start method
 # Alternate turns while checking for win/tie conditions winner? method, tie? method
-# end the game and return to main menu/or ask if player wants to play again end_game method 
+# end the game and to main menu/or ask if player wants to play again end_game method 
