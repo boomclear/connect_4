@@ -77,7 +77,7 @@ class Game
         one_cell.value == "*"
         end
       end
-       !is_tie
+        !is_tie
   end
 
   def computer_win_diag_right
