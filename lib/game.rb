@@ -27,6 +27,8 @@ class Game
   end
 
   def start
+    @board.render_board
+    @board.print_board
     loop do
       @player_turn = @player
       @player_turn.player_makes_move(@board)
@@ -34,7 +36,7 @@ class Game
       break if tie?
       @computer_turn = @computer
       @computer_turn.computer_makes_move(@board)
-      break if player_win?
+      break if computer_win?
       break if tie?
     end
   end
@@ -47,9 +49,25 @@ class Game
       return false
     end
   end
+  
+  def computer_win?
+    if computer_win_vertical || computer_win_horizontal
+      computer_win
+      return true
+    else
+      return false
+    end
+  end
+
+  def computer_win
+    puts 'You lost! :('
+    @board = Board.new
+    self.main_menu
+  end
 
   def player_win
     puts 'You won!'
+    @board = Board.new
     self.main_menu
   end
 
@@ -65,40 +83,94 @@ class Game
     end
   end
 
+  def computer_win_horizontal
+    chip_count = 1
+    left = @computer_turn.location - 1
+    right = @computer_turn.location + 1
+  
+    until left < 0 || !hoz_occupied_computer?(left) #!@board.cells[@computer_turn.array_pos][left].occupied_computer?
+      chip_count += 1
+      left -= 1
+    end
+  
+    until right > 6 || !hoz_occupied_computer?(right)
+      chip_count += 1
+      right += 1
+    end
+  
+    chip_count >= 4
+  end
+
+  def hoz_occupied_computer?(pos)
+    @board.cells[@computer_turn.array_pos][pos].occupied_computer?
+  end
+
+  def ver_occupied_computer?(pos)
+    @board.cells[pos][@computer_turn.location].occupied_computer?
+  end
+
+  def computer_win_vertical
+    chip_count = 1
+    top = @computer_turn.array_pos - 1
+    bottom = @computer_turn.array_pos + 1
+
+    until top < 0 || !ver_occupied_computer?(top)
+      chip_count += 1
+      top -= 1
+    end
+  
+    until bottom > 5 || !ver_occupied_computer?(bottom)
+      chip_count += 1
+      bottom += 1
+    end
+  
+    chip_count >= 4
+  end
+
 
   def player_win_horizontal
     chip_count = 1
-    location = @player_turn.location
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location > 5 && chip_count <= 4
+    left = @player_turn.location - 1
+    right = @player_turn.location + 1
+  
+    until left < 0 || !hoz_occupied_player?(left) #!@board.cells[@player_turn.array_pos][left].occupied_player?
       chip_count += 1
-      @player_turn.location += 1
+      left -= 1
     end
-    while @board.cells[@player_turn.array_pos][location].occupied_player? && location < 1 && chip_count < 4
+  
+    until right > 6 || !hoz_occupied_player?(right)
       chip_count += 1
-      location -= 1
+      right += 1
     end
-    if chip_count >= 4
-      return true
-    elsif chip_count < 4
-      chip_count = 1
-      return false
-    end
+  
+    chip_count >= 4
+  end
+
+  def hoz_occupied_player?(pos)
+    @board.cells[@player_turn.array_pos][pos].occupied_player?
+  end
+
+  def ver_occupied_player?(pos)
+    @board.cells[pos][@player_turn.location].occupied_player?
   end
 
   def player_win_vertical
     chip_count = 1
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos > 0 && chip_count <= 4
-      chip_count += 1
-      @player_turn.array_pos -= 1
-    end
-    if chip_count >= 4
-      return true
-    elsif chip_count < 4
-      chip_count = 1
-      return false
-    end
-  end
+    top = @player_turn.array_pos - 1
+    bottom = @player_turn.array_pos + 1
 
+    until top < 0 || !ver_occupied_player?(top)
+      chip_count += 1
+      top -= 1
+    end
+  
+    until bottom > 5 || !ver_occupied_player?(bottom)
+      chip_count += 1
+      bottom += 1
+    end
+  
+    chip_count >= 4
+  end
 end
 
 
