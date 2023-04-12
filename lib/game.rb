@@ -42,7 +42,7 @@ class Game
   end
 
   def player_win?
-    if player_win_vertical || player_win_horizontal
+    if player_win_vertical || player_win_horizontal || player_win_diag_left || player_win_diag_right
       player_win
       true
     else
@@ -51,7 +51,7 @@ class Game
   end
   
   def computer_win?
-    if computer_win_vertical || computer_win_horizontal
+    if computer_win_vertical || computer_win_horizontal || computer_win_diag_left || computer_win_diag_right
       computer_win
       true
     else
@@ -72,15 +72,100 @@ class Game
   end
 
   def tie?
-    if @board.cells.map do |cell|
-      cell.find do |one_cell|
+    is_tie = @board.cells.map do |cell|
+      cell.find_all do |one_cell|
         one_cell.value == "*"
         end
       end
-        false
-    elsif !computer_win? && !player_win?
-        true
+       !is_tie
+  end
+
+  def computer_win_diag_right
+    chip_count = 1
+    left = @computer_turn.location - 1
+    right = @computer_turn.location + 1
+    top = @computer_turn.array_pos + 1
+    bottom = @computer_turn.array_pos - 1
+  
+    until left < 0 || bottom < 0 || !diagnoal_occupied_computer?(bottom, left)
+      chip_count += 1
+      left -= 1
+      bottom -= 1
     end
+  
+    until right > 6 || top > 5 || !diagnoal_occupied_computer?(top, right)
+      chip_count += 1
+      right += 1
+      top += 1
+    end
+  
+    chip_count >= 4
+  end
+
+  def computer_win_diag_left
+    chip_count = 1
+    left = @computer_turn.location - 1
+    right = @computer_turn.location + 1
+    top = @computer_turn.array_pos + 1
+    bottom = @computer_turn.array_pos - 1
+  
+    until left < 0 || top > 5 || !diagnoal_occupied_computer?(top, left)
+      chip_count += 1
+      left -= 1
+      top += 1
+    end
+  
+    until right > 6 || bottom < 0 || !diagnoal_occupied_computer?(bottom, right)
+      chip_count += 1
+      right += 1
+      bottom -= 1
+    end
+
+    chip_count >= 4
+  end
+
+  def player_win_diag_left
+    chip_count = 1
+    left = @player_turn.location - 1
+    right = @player_turn.location + 1
+    top = @player_turn.array_pos + 1
+    bottom = @player_turn.array_pos - 1
+  
+    until left < 0 || top > 5 || !diagnoal_occupied_player?(top, left)
+      chip_count += 1
+      left -= 1
+      top += 1
+    end
+  
+    until right > 6 || bottom < 0 || !diagnoal_occupied_player?(bottom, right)
+      chip_count += 1
+      right += 1
+      bottom -= 1
+    end
+
+    chip_count >= 4
+  end
+
+  def player_win_diag_right
+    chip_count = 1
+    left = @player_turn.location - 1
+    right = @player_turn.location + 1
+    top = @player_turn.array_pos + 1
+    bottom = @player_turn.array_pos - 1
+  
+    until left < 0 || bottom < 0 || !diagnoal_occupied_player?(bottom, left)
+      chip_count += 1
+      left -= 1
+      bottom -= 1
+    end
+  
+    until right > 6 || top > 5 || !diagnoal_occupied_player?(top, right)
+      chip_count += 1
+      right += 1
+      top += 1
+    end
+  
+    chip_count >= 4
   end
 
   def computer_win_horizontal
@@ -88,7 +173,7 @@ class Game
     left = @computer_turn.location - 1
     right = @computer_turn.location + 1
   
-    until left < 0 || !hoz_occupied_computer?(left) #!@board.cells[@computer_turn.array_pos][left].occupied_computer?
+    until left < 0 || !hoz_occupied_computer?(left)
       chip_count += 1
       left -= 1
     end
@@ -99,6 +184,14 @@ class Game
     end
   
     chip_count >= 4
+  end
+
+  def diagnoal_occupied_computer?(pos1, pos2)
+    @board.cells[pos1][pos2].occupied_computer?
+  end
+
+  def diagnoal_occupied_player?(pos1, pos2)
+    @board.cells[pos1][pos2].occupied_player?
   end
 
   def hoz_occupied_computer?(pos)
@@ -133,7 +226,7 @@ class Game
     left = @player_turn.location - 1
     right = @player_turn.location + 1
   
-    until left < 0 || !hoz_occupied_player?(left) #!@board.cells[@player_turn.array_pos][left].occupied_player?
+    until left < 0 || !hoz_occupied_player?(left)
       chip_count += 1
       left -= 1
     end
@@ -173,12 +266,3 @@ class Game
   end
 end
 
-
-
-
-
-
-# Main Menu (P to Play) main_menu method
-# Start the game, Player first start method game_start method
-# Alternate turns while checking for win/tie conditions winner? method, tie? method
-# end the game and to main menu/or ask if player wants to play again end_game method 

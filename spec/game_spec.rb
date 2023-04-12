@@ -115,4 +115,74 @@ RSpec.describe Game do
     ]
     expect(game.player_win_vertical).to eq(true)
   end
+
+  it 'player_win_horizontal method' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells = [
+      [Cell.new("A", 6).value = "X", Cell.new("B", 6).value = "X", Cell.new("C", 6).value = "X", Cell.new("D", 6).value = "X", Cell.new("E", 6).value = "O", Cell.new("F", 6).value = "X", Cell.new("G", 6).value = "O"],
+      [Cell.new("A", 5).value = "X", Cell.new("B", 5).value = "X", Cell.new("C", 5).value = "X", Cell.new("D", 5).value = "O", Cell.new("E", 5).value = "O", Cell.new("F", 5).value = "X", Cell.new("G", 5).value = "O"],
+      [Cell.new("A", 4).value = "O", Cell.new("B", 4).value = "O", Cell.new("C", 4).value = "X", Cell.new("D", 4).value = "O", Cell.new("E", 4).value = "O", Cell.new("F", 4).value = "X", Cell.new("G", 4).value = "X"],
+      [Cell.new("A", 3).value = "X", Cell.new("B", 3).value = "O", Cell.new("C", 3).value = "O", Cell.new("D", 3).value = "X", Cell.new("E", 3).value = "X", Cell.new("F", 3).value = "O", Cell.new("G", 3).value = "O"],
+      [Cell.new("A", 2).value = "O", Cell.new("B", 2).value = "X", Cell.new("C", 2).value = "X", Cell.new("D", 2).value = "O", Cell.new("E", 2).value = "O", Cell.new("F", 2).value = "X", Cell.new("G", 2).value = "X"],
+      [Cell.new("A", 1).value = "O", Cell.new("B", 1).value = "X", Cell.new("C", 1).value = "O", Cell.new("D", 1).value = "X", Cell.new("E", 1).value = "O", Cell.new("F", 1).value = "X", Cell.new("G", 1).value = "O"]
+    ]
+    expect(game.player_win_vertical).to eq(true)
+  end
+
+  it 'player_win_diagonal method' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells = [
+      [Cell.new("A", 6).value = "X", Cell.new("B", 6).value = "X", Cell.new("C", 6).value = "O", Cell.new("D", 6).value = "X", Cell.new("E", 6).value = "O", Cell.new("F", 6).value = "X", Cell.new("G", 6).value = "O"],
+      [Cell.new("A", 5).value = "X", Cell.new("B", 5).value = "X", Cell.new("C", 5).value = "X", Cell.new("D", 5).value = "O", Cell.new("E", 5).value = "O", Cell.new("F", 5).value = "X", Cell.new("G", 5).value = "O"],
+      [Cell.new("A", 4).value = "O", Cell.new("B", 4).value = "O", Cell.new("C", 4).value = "X", Cell.new("D", 4).value = "O", Cell.new("E", 4).value = "O", Cell.new("F", 4).value = "X", Cell.new("G", 4).value = "X"],
+      [Cell.new("A", 3).value = "X", Cell.new("B", 3).value = "O", Cell.new("C", 3).value = "O", Cell.new("D", 3).value = "X", Cell.new("E", 3).value = "X", Cell.new("F", 3).value = "O", Cell.new("G", 3).value = "O"],
+      [Cell.new("A", 2).value = "O", Cell.new("B", 2).value = "X", Cell.new("C", 2).value = "X", Cell.new("D", 2).value = "O", Cell.new("E", 2).value = "O", Cell.new("F", 2).value = "X", Cell.new("G", 2).value = "X"],
+      [Cell.new("A", 1).value = "O", Cell.new("B", 1).value = "X", Cell.new("C", 1).value = "O", Cell.new("D", 1).value = "X", Cell.new("E", 1).value = "O", Cell.new("F", 1).value = "X", Cell.new("G", 1).value = "O"]
+    ]
+    expect(game.player_win_vertical).to eq(true)
+  end
+
+  it 'computer_win_vertical method' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells = [
+      [Cell.new("A", 6).value = "X", Cell.new("B", 6).value = "X", Cell.new("C", 6).value = "O", Cell.new("D", 6).value = "X", Cell.new("E", 6).value = "O", Cell.new("F", 6).value = "X", Cell.new("G", 6).value = "O"],
+      [Cell.new("A", 5).value = "X", Cell.new("B", 5).value = "X", Cell.new("C", 5).value = "X", Cell.new("D", 5).value = "O", Cell.new("E", 5).value = "O", Cell.new("F", 5).value = "X", Cell.new("G", 5).value = "O"],
+      [Cell.new("A", 4).value = "O", Cell.new("B", 4).value = "O", Cell.new("C", 4).value = "X", Cell.new("D", 4).value = "O", Cell.new("E", 4).value = "O", Cell.new("F", 4).value = "X", Cell.new("G", 4).value = "X"],
+      [Cell.new("A", 3).value = "X", Cell.new("B", 3).value = "O", Cell.new("C", 3).value = "O", Cell.new("D", 3).value = "X", Cell.new("E", 3).value = "X", Cell.new("F", 3).value = "O", Cell.new("G", 3).value = "O"],
+      [Cell.new("A", 2).value = "O", Cell.new("B", 2).value = "X", Cell.new("C", 2).value = "X", Cell.new("D", 2).value = "O", Cell.new("E", 2).value = "O", Cell.new("F", 2).value = "X", Cell.new("G", 2).value = "X"],
+      [Cell.new("A", 1).value = "O", Cell.new("B", 1).value = "X", Cell.new("C", 1).value = "O", Cell.new("D", 1).value = "X", Cell.new("E", 1).value = "O", Cell.new("F", 1).value = "X", Cell.new("G", 1).value = "O"]
+    ]
+    expect(game.player_win_vertical).to eq(true)
+  end
+
+  it 'computer_win_horizontal method' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells = [
+      [Cell.new("A", 6).value = "X", Cell.new("B", 6).value = "X", Cell.new("C", 6).value = "O", Cell.new("D", 6).value = "X", Cell.new("E", 6).value = "O", Cell.new("F", 6).value = "X", Cell.new("G", 6).value = "O"],
+      [Cell.new("A", 5).value = "X", Cell.new("B", 5).value = "X", Cell.new("C", 5).value = "X", Cell.new("D", 5).value = "O", Cell.new("E", 5).value = "O", Cell.new("F", 5).value = "X", Cell.new("G", 5).value = "O"],
+      [Cell.new("A", 4).value = "O", Cell.new("B", 4).value = "O", Cell.new("C", 4).value = "X", Cell.new("D", 4).value = "O", Cell.new("E", 4).value = "O", Cell.new("F", 4).value = "X", Cell.new("G", 4).value = "X"],
+      [Cell.new("A", 3).value = "X", Cell.new("B", 3).value = "O", Cell.new("C", 3).value = "O", Cell.new("D", 3).value = "X", Cell.new("E", 3).value = "X", Cell.new("F", 3).value = "O", Cell.new("G", 3).value = "O"],
+      [Cell.new("A", 2).value = "O", Cell.new("B", 2).value = "X", Cell.new("C", 2).value = "X", Cell.new("D", 2).value = "O", Cell.new("E", 2).value = "O", Cell.new("F", 2).value = "X", Cell.new("G", 2).value = "X"],
+      [Cell.new("A", 1).value = "O", Cell.new("B", 1).value = "O", Cell.new("C", 1).value = "O", Cell.new("D", 1).value = "O", Cell.new("E", 1).value = "O", Cell.new("F", 1).value = "X", Cell.new("G", 1).value = "O"]
+    ]
+    expect(game.player_win_vertical).to eq(true)
+  end
+
+  it 'computer_win_diagonal method' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells = [
+      [Cell.new("A", 6).value = "X", Cell.new("B", 6).value = "X", Cell.new("C", 6).value = "O", Cell.new("D", 6).value = "X", Cell.new("E", 6).value = "O", Cell.new("F", 6).value = "X", Cell.new("G", 6).value = "O"],
+      [Cell.new("A", 5).value = "X", Cell.new("B", 5).value = "X", Cell.new("C", 5).value = "X", Cell.new("D", 5).value = "O", Cell.new("E", 5).value = "O", Cell.new("F", 5).value = "X", Cell.new("G", 5).value = "O"],
+      [Cell.new("A", 4).value = "O", Cell.new("B", 4).value = "O", Cell.new("C", 4).value = "X", Cell.new("D", 4).value = "O", Cell.new("E", 4).value = "O", Cell.new("F", 4).value = "X", Cell.new("G", 4).value = "X"],
+      [Cell.new("A", 3).value = "X", Cell.new("B", 3).value = "O", Cell.new("C", 3).value = "O", Cell.new("D", 3).value = "X", Cell.new("E", 3).value = "X", Cell.new("F", 3).value = "O", Cell.new("G", 3).value = "O"],
+      [Cell.new("A", 2).value = "O", Cell.new("B", 2).value = "O", Cell.new("C", 2).value = "X", Cell.new("D", 2).value = "O", Cell.new("E", 2).value = "O", Cell.new("F", 2).value = "X", Cell.new("G", 2).value = "X"],
+      [Cell.new("A", 1).value = "O", Cell.new("B", 1).value = "X", Cell.new("C", 1).value = "O", Cell.new("D", 1).value = "X", Cell.new("E", 1).value = "O", Cell.new("F", 1).value = "X", Cell.new("G", 1).value = "O"]
+    ]
+    expect(game.player_win_vertical).to eq(true)
+  end
 end
