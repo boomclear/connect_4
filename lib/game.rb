@@ -82,6 +82,27 @@ class Game
     end
   end
 
+  def player_win_horizontal
+    chip_count = 1
+    left = @player_turn.location - 1
+    right = @player_turn.location + 1
+  
+    # Check left
+    until left < 0 || !@board.cells[@player_turn.array_pos][left].occupied_player? || @board.cells[@player_turn.array_pos][left].value != @player.chip
+      chip_count += 1
+      left -= 1
+    end
+  
+    # Check right
+    until right > 6 || !@board.cells[@player_turn.array_pos][right].occupied_player? || @board.cells[@player_turn.array_pos][right].value != @player.chip
+      chip_count += 1
+      right += 1
+    end
+  
+    chip_count >= 4
+  end
+  
+
   def player_win_vertical
     chip_count = 1
     until !@board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? || @player_turn.location == 6 || chip_count == 4
