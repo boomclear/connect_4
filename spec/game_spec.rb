@@ -231,4 +231,46 @@ RSpec.describe Game do
     ]
     expect(game.player_win_vertical).to eq(true)
   end
+
+  it 'diagonal occupied computer' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "O"
+    expect(game.diagnoal_occupied_computer(1,1)).to eq(true)
+  end
+
+  it 'diagonal occupied player' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "X"
+    expect(game.diagnoal_occupied_player(1,1)).to eq(true)
+  end
+
+  it 'horizontal occupied computer' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "O"
+    expect(game.hoz_occupied_computer(1,1)).to eq(true)
+  end
+
+  it 'vertical occupied computer' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "O"
+    expect(game.ver_occupied_computer(1,1)).to eq(true)
+  end
+
+  it 'horizontal occupied player' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "X"
+    expect(game.hoz_occupied_player(1,1)).to eq(true)
+  end
+
+  it 'vertical occupied player' do
+    board = Board.new
+    game = Game.new(board)
+    board.cells[1][1].value = "X"
+    expect(game.ver_occupied_player(1,1)).to eq(true)
+  end
 end
