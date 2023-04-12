@@ -19,7 +19,7 @@ class Game
     if play_or_not == "P"
       self.start
     elsif play_or_not == "Q"
-      main_menu
+      puts "Goodbye!"
     else
       puts "Please put P or Q"
       main_menu
