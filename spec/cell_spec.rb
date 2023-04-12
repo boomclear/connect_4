@@ -15,8 +15,8 @@ RSpec.describe Cell do
 
   it 'occupied player and computer?' do
     cell = Cell.new("A", 1)
-    expect(cell.occupied_player).to eq(false)
-    expect(cell.occupied_computer).to eq(false)
+    expect(cell.occupied_player?).to eq(false)
+    expect(cell.occupied_computer?).to eq(false)
     cell.value = "X"
     expect(cell.occupied_player?).to eq(true)
     cell.value = "O"
