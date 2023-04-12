@@ -40,7 +40,7 @@ class Game
   end
 
   def player_win?
-    if player_win_vertical && player_win_horizontal
+    if player_win_vertical || player_win_horizontal
       player_win
       return true
     else
@@ -69,25 +69,25 @@ class Game
   def player_win_horizontal
     chip_count = 1
     location = @player_turn.location
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location > 5 && chip_count < 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.location > 5 && chip_count <= 4
       chip_count += 1
       @player_turn.location += 1
     end
-    while @board.cells[@player_turn.array_pos][location].occupied_player? && location < 0 && chip_count < 4
+    while @board.cells[@player_turn.array_pos][location].occupied_player? && location < 1 && chip_count < 4
       chip_count += 1
       location -= 1
     end
     if chip_count >= 4
-      true
+      return true
     elsif chip_count < 4
       chip_count = 1
-      false
+      return false
     end
   end
 
   def player_win_vertical
     chip_count = 1
-    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos > 0 && chip_count < 4
+    while @board.cells[@player_turn.array_pos][@player_turn.location].occupied_player? && @player_turn.array_pos > 0 && chip_count <= 4
       chip_count += 1
       @player_turn.array_pos -= 1
     end
