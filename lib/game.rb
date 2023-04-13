@@ -168,6 +168,22 @@ class Game
     chip_count >= 4
   end
 
+  def diagnoal_occupied_computer?(pos1, pos2)
+    @board.cells[pos1][pos2].occupied_computer?
+  end
+
+  def diagnoal_occupied_player?(pos1, pos2)
+    @board.cells[pos1][pos2].occupied_player?
+  end
+
+  def hoz_occupied_computer?(pos)
+    @board.cells[@computer_turn.array_pos][pos].occupied_computer?
+  end
+
+  def ver_occupied_computer?(pos)
+    @board.cells[pos][@computer_turn.location].occupied_computer?
+  end
+
   def computer_win_horizontal
     chip_count = 1
     left = @computer_turn.location - 1
@@ -184,22 +200,6 @@ class Game
     end
   
     chip_count >= 4
-  end
-
-  def diagnoal_occupied_computer?(pos1, pos2)
-    @board.cells[pos1][pos2].occupied_computer?
-  end
-
-  def diagnoal_occupied_player?(pos1, pos2)
-    @board.cells[pos1][pos2].occupied_player?
-  end
-
-  def hoz_occupied_computer?(pos)
-    @board.cells[@computer_turn.array_pos][pos].occupied_computer?
-  end
-
-  def ver_occupied_computer?(pos)
-    @board.cells[pos][@computer_turn.location].occupied_computer?
   end
 
   def computer_win_vertical
@@ -220,6 +220,13 @@ class Game
     chip_count >= 4
   end
 
+  def hoz_occupied_player?(pos)
+    @board.cells[@player_turn.array_pos][pos].occupied_player?
+  end
+
+  def ver_occupied_player?(pos)
+    @board.cells[pos][@player_turn.location].occupied_player?
+  end
 
   def player_win_horizontal
     chip_count = 1
@@ -237,14 +244,6 @@ class Game
     end
   
     chip_count >= 4
-  end
-
-  def hoz_occupied_player?(pos)
-    @board.cells[@player_turn.array_pos][pos].occupied_player?
-  end
-
-  def ver_occupied_player?(pos)
-    @board.cells[pos][@player_turn.location].occupied_player?
   end
 
   def player_win_vertical
